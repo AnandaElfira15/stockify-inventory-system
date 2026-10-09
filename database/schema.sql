@@ -1,0 +1,16 @@
+CREATE DATABASE IF NOT EXISTS stockify CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE stockify;
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE IF EXISTS stock_movements,product_suppliers,products,suppliers,categories,users;
+SET FOREIGN_KEY_CHECKS=1;
+CREATE TABLE users(id INT AUTO_INCREMENT PRIMARY KEY,name VARCHAR(100) NOT NULL,username VARCHAR(50) UNIQUE NOT NULL,password VARCHAR(255) NOT NULL,role ENUM('admin','staff') NOT NULL DEFAULT 'staff',created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE categories(id INT AUTO_INCREMENT PRIMARY KEY,name VARCHAR(100) UNIQUE NOT NULL,created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE suppliers(id INT AUTO_INCREMENT PRIMARY KEY,code VARCHAR(30) UNIQUE NOT NULL,name VARCHAR(100) NOT NULL,phone VARCHAR(30),address TEXT,created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE products(id INT AUTO_INCREMENT PRIMARY KEY,category_id INT NOT NULL,sku VARCHAR(50) UNIQUE NOT NULL,name VARCHAR(150) NOT NULL,price DECIMAL(15,2) NOT NULL DEFAULT 0,stock INT NOT NULL DEFAULT 0,minimum_stock INT NOT NULL DEFAULT 5,created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,FOREIGN KEY(category_id) REFERENCES categories(id) ON UPDATE CASCADE ON DELETE RESTRICT);
+CREATE TABLE product_suppliers(product_id INT NOT NULL,supplier_id INT NOT NULL,supplier_price DECIMAL(15,2) NOT NULL DEFAULT 0,PRIMARY KEY(product_id,supplier_id),FOREIGN KEY(product_id) REFERENCES products(id) ON DELETE RESTRICT,FOREIGN KEY(supplier_id) REFERENCES suppliers(id) ON DELETE RESTRICT);
+CREATE TABLE stock_movements(id INT AUTO_INCREMENT PRIMARY KEY,product_id INT NOT NULL,supplier_id INT NULL,user_id INT NOT NULL,type ENUM('IN','OUT') NOT NULL,quantity INT NOT NULL,description VARCHAR(255),movement_date DATE NOT NULL,created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,FOREIGN KEY(product_id) REFERENCES products(id) ON DELETE RESTRICT,FOREIGN KEY(supplier_id) REFERENCES suppliers(id) ON DELETE RESTRICT,FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE RESTRICT);
+INSERT INTO users(name,username,password,role) VALUES('Administrator','admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC6j6hYy9w6N0M5J5u','admin'),('Staff Stockify','staff','$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC6j6hYy9w6N0M5J5u','staff');
+INSERT INTO categories(name) VALUES('Aksesoris Komputer'),('Audio'),('Kabel'),('Penyimpanan');
+INSERT INTO suppliers(code,name,phone,address) VALUES('SUP001','PT Teknologi Jaya','081234567890','Medan'),('SUP002','CV Digital Nusantara','081298765432','Medan');
+INSERT INTO products(category_id,sku,name,price,stock,minimum_stock) VALUES(1,'KB001','Keyboard Mechanical',350000,10,5),(1,'MS001','Mouse Wireless',150000,15,5),(2,'HS001','Headset Gaming',275000,8,3),(2,'SP001','Speaker Bluetooth',220000,6,3),(3,'UC001','USB Cable',45000,20,5),(4,'FD001','Flashdisk 32GB',75000,12,5);
+INSERT INTO product_suppliers VALUES(1,1,300000),(2,1,120000),(3,2,235000),(4,2,185000),(5,1,30000),(6,2,60000);
