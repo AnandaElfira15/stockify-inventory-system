@@ -57,3 +57,49 @@ Pastikan konfigurasi database sesuai dengan lingkungan lokal. Gunakan akun demo 
 **Project:** Stockify — Inventory Management System
 **Bahasa:** PHP
 **Database:** MySQL
+## Screenshot Aplikasi
+
+### 1. Login Admin
+![Login Admin](<Screenshot/Gambar 1 (Login Admin).png>)
+
+### 2. Dashboard Admin
+![Dashboard Admin](<Screenshot/Gambar 2 (Dasboard).png>)
+
+### 3. Tampilan Produk
+![Tampilan Produk](<Screenshot/Gambar 3 (Tampilan Produk).png>)
+
+### 4. Pencarian Produk
+![Pencarian Produk](<Screenshot/Gambar 4 (Pencarian Produk).png>)
+
+### 5. Kategori
+![Kategori](<Screenshot/Gambar 5 (Kategori).png>)
+
+### 6. Supplier
+![Supplier](<Screenshot/Gambar 6 (Suplier).png>)
+
+### 7. Barang Masuk
+![Barang Masuk](<Screenshot/Gambar 7 (Barang Masuk).png>)
+
+### 8. Barang Keluar
+![Barang Keluar](<Screenshot/Gambar 8 (Gambar Keluar).png>)
+
+### 9. Riwayat Transaksi
+![Riwayat Transaksi](<Screenshot/Gambar 9 (Riwayat Transaksi).png>)
+
+### 10. Laporan
+![Laporan](<Screenshot/Gambar 10 (Laporan).png>)
+
+### 11. Pengguna
+![Pengguna](<Screenshot/Gambar 11 (Pengguna).png>)
+
+### 12. Validasi Barang Keluar Melebihi Stok
+![Validasi Barang Keluar](<Screenshot/Gambar 12 (Barang keluar melebihi stok).png>)
+
+### 13. Validasi SKU Produk Kosong
+![Validasi SKU Produk](<Screenshot/Gambar 13 (Tidak Mengisi SKU Produk).png>)
+
+### 14. Login Staff
+![Login Staff](<Screenshot/Gambar 14 ( Login Staff).png>)
+
+### 15. Dashboard Staff
+![Dashboard Staff](<Screenshot/Gambar 15 (Dasboard Staff).png>)
