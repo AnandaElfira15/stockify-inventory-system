@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+HEAD
 # Stockify
 Inventory Management System - Mini Project 3.
 
